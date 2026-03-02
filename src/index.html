@@ -1,17 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RENAGAY — Ciberseguridad</title>
+  <meta name="description" content="Servicios de ciberseguridad: pentesting, respuesta a incidentes, seguridad en la nube y formación.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <title>Vanilla JavaScript App</title>
 </head>
 
 <body>
-  <main>
-    <h1>RENAGAY</h1>
-  </main>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">RENAGAY</a>
+      <nav class="nav">
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#equipo">Equipo</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <a class="btn" href="#contacto">Contactar</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Protección inteligente. Respuesta rápida.</h1>
+      <p class="lead">Evaluamos, protegemos y respondemos a amenazas reales con soluciones adaptadas a tu organización.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#servicios">Nuestros servicios</a>
+        <a class="btn ghost" href="#contacto">Solicitar evaluación</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="section services">
+    <div class="container">
+      <h2>Servicios clave</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="icon">🔍</div>
+          <h3>Pentest & Red Team</h3>
+          <p>Evaluaciones reales para descubrir y mitigar vulnerabilidades antes que los atacantes.</p>
+        </article>
+        <article class="card">
+          <div class="icon">☁️</div>
+          <h3>Seguridad en la nube</h3>
+          <p>Configuración segura, revisión de identidades y control de accesos para entornos cloud.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🚨</div>
+          <h3>Respuesta a incidentes</h3>
+          <p>Contención, análisis forense y recuperación para reducir impacto y tiempo de inactividad.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🎓</div>
+          <h3>Formación & Concienciación</h3>
+          <p>Capacitación práctica para equipos técnicos y no técnicos para reducir riesgo humano.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section contact">
+    <div class="container">
+      <h2>Contacto</h2>
+      <p>Escríbenos para una evaluación gratuita y un plan de mejora ajustado a tu organización.</p>
+      <a class="btn primary" href="mailto:info@renagay.example">info@renagay.example</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> RENAGAY — Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 
 </html>
