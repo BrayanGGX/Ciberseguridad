@@ -5,81 +5,253 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RENAGAY — Ciberseguridad</title>
-  <meta name="description" content="Servicios de ciberseguridad: pentesting, respuesta a incidentes, seguridad en la nube y formación.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Landing de ciberseguridad — pentesting, auditoría y protección de datos.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-900:#020305;
+      --bg-800:#071021;
+      --neon-green:#00ff7a;
+      --neon-blue:#00c2ff;
+      --muted:#8fa3b2;
+      --glass: rgba(255,255,255,0.03);
+      --card: rgba(10,16,22,0.6);
+      --radius:14px;
+      --max-w:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;padding:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: radial-gradient(800px 400px at 10% 10%, rgba(0,194,255,0.03), transparent), linear-gradient(180deg,var(--bg-900), #031025 60%);
+      color:#e6f0f8;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+    .container{max-width:var(--max-w);margin:0 auto;padding:28px}
+
+    /* Header */
+    .site-header{position:sticky;top:0;z-index:40;padding:12px 0;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.2));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .header-inner{display:flex;align-items:center;gap:20px}
+    .brand{font-weight:800;color:var(--neon-green);text-decoration:none;font-size:1.15rem;letter-spacing:1px}
+    .nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}
+    .nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .nav a:hover{color:var(--neon-blue)}
+    .cta{margin-left:auto}
+
+    /* Buttons */
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);text-decoration:none;font-weight:700}
+    .btn.primary{background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));color:#021821;box-shadow:0 8px 30px rgba(0,194,255,0.06);border:0}
+
+    /* Hero + Matrix background */
+    .hero{position:relative;min-height:68vh;display:flex;align-items:center}
+    .matrix-canvas{position:absolute;inset:0;z-index:0}
+    .hero-inner{position:relative;z-index:10;padding:64px 0;display:flex;flex-direction:column;gap:18px}
+    .terminal{max-width:920px;padding:24px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(255,255,255,0.02));border:1px solid rgba(0,255,120,0.04);box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+    .hero h1{font-family:JetBrains Mono, monospace;font-weight:700;font-size:2rem;margin:0;color:var(--neon-green);text-shadow:0 6px 28px rgba(0,255,122,0.06)}
+    .lead{color:var(--muted);margin-top:6px}
+    .terminal .typed{font-family:JetBrains Mono, monospace;color:var(--neon-blue);font-weight:700}
+
+    /* Services */
+    .section{padding:56px 0}
+    .section h2{color:var(--neon-blue);margin-bottom:18px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 32px rgba(1,8,20,0.6);transition:transform .25s ease,box-shadow .25s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(0,194,255,0.08)}
+    .icon-wrap{width:56px;height:56px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg, rgba(0,255,122,0.06), rgba(0,194,255,0.02));color:var(--neon-green);font-size:22px}
+    .card h3{margin:12px 0 8px;color:#eafff2}
+    .card p{color:var(--muted);margin:0}
+
+    /* News */
+    .news-list{display:flex;flex-direction:column;gap:12px}
+    .news-item{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+    .news-item time{color:var(--muted);font-size:13px}
+    .news-item h4{margin:0 0 6px 0;color:var(--neon-blue);font-size:1rem}
+
+    /* Footer */
+    .site-footer{border-top:1px solid rgba(255,255,255,0.02);padding:20px 0;color:var(--muted);text-align:center}
+
+    /* Responsive */
+    @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){
+      .grid{grid-template-columns:1fr}
+      .hero{min-height:56vh}
+      .hero h1{font-size:1.4rem}
+      .header-inner{gap:10px}
+      .nav{display:none}
+    }
+  </style>
 </head>
 
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#">RENAGAY</a>
-      <nav class="nav">
+      <nav class="nav" aria-label="Menú principal">
         <ul>
           <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#equipo">Equipo</a></li>
+          <li><a href="#noticias">Noticias</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
-      <a class="btn" href="#contacto">Contactar</a>
+      <a class="btn primary cta" href="#contacto">Solicitar evaluación</a>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container hero-inner">
-      <h1>Protección inteligente. Respuesta rápida.</h1>
-      <p class="lead">Evaluamos, protegemos y respondemos a amenazas reales con soluciones adaptadas a tu organización.</p>
-      <div class="hero-cta">
-        <a class="btn primary" href="#servicios">Nuestros servicios</a>
-        <a class="btn ghost" href="#contacto">Solicitar evaluación</a>
+  <main>
+    <section class="hero">
+      <canvas class="matrix-canvas" id="matrix"></canvas>
+      <div class="container hero-inner">
+        <div class="terminal">
+          <h1>Protege. Detecta. Responde.</h1>
+          <p class="lead">Defendemos tu organisation frente a amenazas modernas con servicios profesionales.</p>
+          <p class="typed" aria-live="polite"><span id="typed-text"></span><span id="cursor">▊</span></p>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="#servicios">Ver servicios</a>
+            <a class="btn" href="#noticias" style="margin-left:8px">Últimas amenazas</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="servicios" class="section services">
-    <div class="container">
-      <h2>Servicios clave</h2>
-      <div class="grid">
-        <article class="card">
-          <div class="icon">🔍</div>
-          <h3>Pentest & Red Team</h3>
-          <p>Evaluaciones reales para descubrir y mitigar vulnerabilidades antes que los atacantes.</p>
-        </article>
-        <article class="card">
-          <div class="icon">☁️</div>
-          <h3>Seguridad en la nube</h3>
-          <p>Configuración segura, revisión de identidades y control de accesos para entornos cloud.</p>
-        </article>
-        <article class="card">
-          <div class="icon">🚨</div>
-          <h3>Respuesta a incidentes</h3>
-          <p>Contención, análisis forense y recuperación para reducir impacto y tiempo de inactividad.</p>
-        </article>
-        <article class="card">
-          <div class="icon">🎓</div>
-          <h3>Formación & Concienciación</h3>
-          <p>Capacitación práctica para equipos técnicos y no técnicos para reducir riesgo humano.</p>
-        </article>
+    <section id="servicios" class="section services">
+      <div class="container">
+        <h2>Servicios principales</h2>
+        <div class="grid" role="list">
+          <article class="card" role="listitem">
+            <div class="icon-wrap">🛡️</div>
+            <h3>Pentesting</h3>
+            <p>Simulaciones de ataque controladas para encontrar vectores de compromiso antes que los atacantes.</p>
+          </article>
+          <article class="card" role="listitem">
+            <div class="icon-wrap">📋</div>
+            <h3>Auditoría</h3>
+            <p>Revisión exhaustiva de configuraciones, políticas y cumplimiento para reducir la superficie de ataque.</p>
+          </article>
+          <article class="card" role="listitem">
+            <div class="icon-wrap">🔒</div>
+            <h3>Protección de Datos</h3>
+            <p>Encriptado, control de accesos y programas de protección para salvaguardar información crítica.</p>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contacto" class="section contact">
-    <div class="container">
-      <h2>Contacto</h2>
-      <p>Escríbenos para una evaluación gratuita y un plan de mejora ajustado a tu organización.</p>
-      <a class="btn primary" href="mailto:info@renagay.example">info@renagay.example</a>
-    </div>
-  </section>
+    <section id="noticias" class="section news">
+      <div class="container">
+        <h2>Noticias y alertas</h2>
+        <div class="news-list">
+          <article class="news-item">
+            <div style="min-width:8px;border-left:3px solid var(--neon-green);padding-left:12px">
+              <h4>Campaña de phishing targeting infraestructura cloud</h4>
+              <time datetime="2026-03-01">1 mar, 2026</time>
+              <p class="muted">Se han detectado correos con credenciales falsas diseñadas para robar tokens de acceso de proveedores cloud.</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <div style="min-width:8px;border-left:3px solid var(--neon-blue);padding-left:12px">
+              <h4>Exploit zero-day en gestor web</h4>
+              <time datetime="2026-02-25">25 feb, 2026</time>
+              <p class="muted">Actualiza componentes críticos: se ha publicado PoC para una vulnerabilidad RCE en versiones antiguas.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section contact">
+      <div class="container">
+        <h2>Contacto</h2>
+        <p class="muted">¿Listo para mejorar tu seguridad? Contáctanos para una evaluación inicial.</p>
+        <a class="btn primary" href="mailto:info@renagay.example">info@renagay.example</a>
+      </div>
+    </section>
+  </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
+    <div class="container">
       <p>© <span id="year"></span> RENAGAY — Todos los derechos reservados.</p>
     </div>
   </footer>
 
   <script>
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Matrix canvas effect
+    (function(){
+      const canvas = document.getElementById('matrix');
+      const ctx = canvas.getContext('2d');
+      let width, height, columns, drops;
+
+      const letters = '01あいうえおアイウエオ漢字0123456789ABCDEF▓▒░<>[]{}()@#$%^&*+=-_.'.split('');
+
+      function resize(){
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight * 0.75;
+        columns = Math.floor(width / 18);
+        drops = new Array(columns).fill(0).map(()=>Math.floor(Math.random()*height));
+      }
+
+      function draw(){
+        ctx.fillStyle = 'rgba(0,0,0,0.08)';
+        ctx.fillRect(0,0,width,height);
+        ctx.font = '14px JetBrains Mono, monospace';
+        for(let i=0;i<columns;i++){
+          const txt = letters[Math.floor(Math.random()*letters.length)];
+          const x = i * 18;
+          const y = drops[i] * 14;
+          const gradient = ctx.createLinearGradient(x,y-20,x,y+20);
+          gradient.addColorStop(0, 'rgba(0,255,122,1)');
+          gradient.addColorStop(1, 'rgba(0,194,255,0.6)');
+          ctx.fillStyle = gradient;
+          ctx.fillText(txt, x, y);
+          if(y > height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+
+      function loop(){
+        draw();
+        requestAnimationFrame(loop);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      loop();
+    })();
+
+    // Terminal typing effect
+    (function(){
+      const el = document.getElementById('typed-text');
+      const cursor = document.getElementById('cursor');
+      const phrases = [
+        'Iniciando escaneo de superficie...',
+        'Analizando vectores de red...',
+        'Generando informe de vulnerabilidades...'
+      ];
+      let pIndex=0, cIndex=0, forward=true;
+
+      function tick(){
+        const phrase = phrases[pIndex];
+        if(forward){
+          el.textContent = phrase.slice(0, cIndex+1);
+          cIndex++;
+          if(cIndex===phrase.length){forward=false;setTimeout(tick,1200);return}
+        } else {
+          el.textContent = phrase.slice(0, cIndex-1);
+          cIndex--;
+          if(cIndex===0){forward=true;pIndex=(pIndex+1)%phrases.length;setTimeout(tick,400);return}
+        }
+        setTimeout(tick,110 + Math.random()*60);
+      }
+      tick();
+
+      // Blink cursor
+      setInterval(()=>{cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0'}, 500);
+    })();
   </script>
 </body>
 
